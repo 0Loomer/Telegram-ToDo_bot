@@ -453,7 +453,7 @@ async def text_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
             await update.message.reply_text(t(lang, "not_found"))
         return
 
-    await update.message.reply_text(t(lang, "unknown"))
+    return 
 
 
 def main():
