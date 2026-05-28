@@ -420,6 +420,9 @@ async def callback_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 async def text_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    if update.effective_chat.type != "private":
+        return
+    
     user_id = update.effective_user.id
 
     if not storage.has_lang(user_id):
