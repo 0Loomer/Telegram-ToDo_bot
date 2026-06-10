@@ -20,7 +20,7 @@ TOKEN = os.getenv("BOT_TOKEN", "PASTE_YOUR_NEW_BOT_TOKEN_HERE")
 FILE = "tasks.json"
 
 ADDING, EDITING = range(2)
-DEFAULT_LANG = "fa"
+DEFAULT_LANG = "en"
 
 TEXTS = {
     "fa": {
