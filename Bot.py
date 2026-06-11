@@ -16,7 +16,7 @@ from telegram.ext import (
     filters,
 )
 
-TOKEN = os.getenv("BOT_TOKEN", "PASTE_YOUR_NEW_BOT_TOKEN_HERE")
+TOKEN = os.getenv("BOT_TOKEN")
 FILE = "tasks.json"
 
 ADDING, EDITING = range(2)
@@ -460,8 +460,8 @@ async def text_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 
 def main():
-    if not TOKEN or TOKEN == "PASTE_YOUR_NEW_BOT_TOKEN_HERE":
-        raise ValueError("Please set BOT_TOKEN env var or paste your bot token into TOKEN.")
+    if not TOKEN:
+        raise ValueError("BOT_TOKEN not found in environment variables.")
 
     app = ApplicationBuilder().token(TOKEN).build()
 
@@ -474,7 +474,7 @@ def main():
     app.add_handler(CallbackQueryHandler(callback_handler))
     app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, text_handler))
 
-    print("🤖 Bot is running...")
+    print("Bot is running")
     app.run_polling()
 
 
