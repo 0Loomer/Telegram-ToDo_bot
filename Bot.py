@@ -298,7 +298,7 @@ async def show_tasks(update: Update, context: ContextTypes.DEFAULT_TYPE, user_id
     await update.effective_message.reply_text(text, reply_markup=markup)
 
 
-async def ask_language(update: Update, lang="fa"):
+async def ask_language(update: Update, lang=DEFAULT_LANG):
     await update.effective_message.reply_text(
         t(lang, "choose_language"),
         reply_markup=build_language_keyboard(),
@@ -309,7 +309,7 @@ async def start_cmd(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_id = update.effective_user.id
 
     if not storage.has_lang(user_id):
-        await ask_language(update, "fa")
+        await ask_language(update, DEFAULT_LANG)
         return
 
     lang = storage.get_lang(user_id)
@@ -329,7 +329,7 @@ async def addtask_cmd(update: Update, context: ContextTypes.DEFAULT_TYPE):
     lang = storage.get_lang(user_id)
 
     if not storage.has_lang(user_id):
-        await ask_language(update, "fa")
+        await ask_language(update, DEFAULT_LANG)
         return
 
     if context.args:
@@ -426,7 +426,7 @@ async def text_handler(update: Update, context: ContextTypes.DEFAULT_TYPE):
     user_id = update.effective_user.id
 
     if not storage.has_lang(user_id):
-        await ask_language(update, "fa")
+        await ask_language(update, DEFAULT_LANG)
         return
 
     lang = storage.get_lang(user_id)
